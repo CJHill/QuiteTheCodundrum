@@ -15,6 +15,16 @@ public:
 	// Sets default values for this character's properties
 	AMainCharacter();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 Divinity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 Mana;
+	
+	void TakeDmg(int32 dmg);
+	
+
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
