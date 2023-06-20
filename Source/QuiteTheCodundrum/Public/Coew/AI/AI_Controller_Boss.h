@@ -6,6 +6,7 @@
 #include "AIController.h"
 #include "AI_Controller_Boss.generated.h"
 
+class UBehaviorTreeComponent;
 /**
  * 
  */
@@ -15,7 +16,7 @@ class QUITETHECODUNDRUM_API AAI_Controller_Boss : public AAIController
 	GENERATED_BODY()
 	
 public:
-	AI_Controller_Boss();
+	AAI_Controller_Boss();
 
 protected:
 	virtual void BeginPlay() override;

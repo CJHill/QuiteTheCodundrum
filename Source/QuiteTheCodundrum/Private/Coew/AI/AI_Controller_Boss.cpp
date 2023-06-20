@@ -2,28 +2,31 @@
 
 
 #include "Coew/AI/AI_Controller_Boss.h"
+#include "BehaviorTree/BehaviorTreeComponent.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 AAI_Controller_Boss::AAI_Controller_Boss() {
 
-	BehaviorTreeComponent = CreateDefaultSubObject<UBehaviorTreeComponent>(TEXT("Behavior Tree Component"));
-	BlackboardComponent = CreateDefaultSubObject<UBlackboardComponent>(TEXY("Blackboard Component"));
+	BehaviorTreeComponent = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("Behavior Tree Component"));
+	BlackboardComponent = CreateDefaultSubobject<UBlackboardComponent>(TEXT("Blackboard Component"));
 }
 
 void AAI_Controller_Boss::BeginPlay() {
 	Super::BeginPlay();
 
-	if (IsValid(Test:BehaviorTree.Get()))
+	if (IsValid(BehaviorTree.Get()))
 	{
-		RunBehaviorTree(BTAsset:BehaviorTree.Get());
-		BehaviorTreeComponent->StartTree([&] * BehaviorTree.Get());
+		RunBehaviorTree(BehaviorTree.Get());
+		BehaviorTreeComponent->StartTree( *BehaviorTree.Get());
 	}
 }
 
 void AAI_Controller_Boss::OnPossess(APawn* InPawn) {
 	Super::OnPossess(InPawn);
 
-	if (IsValid(Test:Blackboard.Get()) && IsValid(Test:BehaviorTree.Get()))
+	if (IsValid(Blackboard.Get()) && IsValid(BehaviorTree.Get()))
 	{
-		Blackboard->InitializeBlackboard([&] * BehaviorTree.Get()->BlackboardAsset.Get());
+		Blackboard->InitializeBlackboard(* BehaviorTree.Get()->BlackboardAsset.Get());
 	}
 }
