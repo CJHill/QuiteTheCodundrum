@@ -11,6 +11,11 @@ AMainCharacter::AMainCharacter()
 
 }
 
+void AMainCharacter::TakeDmg(int32 dmg)
+{
+	Divinity - dmg;
+}
+
 // Called when the game starts or when spawned
 void AMainCharacter::BeginPlay()
 {
